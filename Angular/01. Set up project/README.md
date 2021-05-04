@@ -1,10 +1,10 @@
 # Set up project
-* Install CLI
+* Install CLI (if You do not have it)
 * Create Project
 * Run project
 
 ### Install CLI
-❗**If you do not have it!**
+❗**If You do not have it!**
 ```sh
 npm install -g @angular/cli
 ```
