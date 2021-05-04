@@ -1,4 +1,4 @@
-# Create Project
+# Set up project
 * Install CLI
 * Create Project
 * Run project
