@@ -9,6 +9,7 @@ import { TodoComponent } from '../pages/todo/todo.component';
 import { TodoHeaderComponent } from '../components/todo-header/todo-header.component';
 import { TodoSectionComponent } from '../components/todo-section/todo-section.component';
 import { RouterModule } from '@angular/router';
+// ADD THIS
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
+    // ADD THIS
     FormsModule
   ],
   exports: [
