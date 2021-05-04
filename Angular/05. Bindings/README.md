@@ -58,3 +58,5 @@ in `workshop.component.html`
 </ul>
 ```
 ### Models (Observables)
+## Resources
+* [bind observable](https://stackoverflow.com/questions/38844835/extending-angular-2-ngmodel-directive-to-use-observables)
