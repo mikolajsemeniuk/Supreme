@@ -6,10 +6,11 @@ In `app-routing.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TodoComponent } from './pages/todo/todo.component';
+import { TodoComponent } from './components/todo/todo.component';
 
 const routes: Routes = [
-  { path: 'todo', component: TodoComponent },
+  { path: 'todo', component: TodoComponent }
+  /*
   { path: 'todo/:id', component: TodoComponent },
   { path: 'children', children: [
       { path: '', component: TodoComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
     ]
   },
   { path: 'redirect', redirectTo: 'todo' },
-  { path: '**', redirectTo: 'todo' },
+  { path: '**', redirectTo: 'todo' }
+  */
 ];
 
 @NgModule({
@@ -32,17 +34,13 @@ in `modules/shared.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodoComponent } from '../pages/todo/todo.component';
-import { TodoHeaderComponent } from '../components/todo-header/todo-header.component';
-import { TodoSectionComponent } from '../components/todo-section/todo-section.component';
+import { TodoComponent } from '../components/todo/todo.component';
 // ADD THIS
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    TodoComponent,
-    TodoHeaderComponent,
-    TodoSectionComponent
+    TodoComponent
   ],
   imports: [
     CommonModule,
@@ -50,9 +48,7 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   exports: [
-    TodoComponent,
-    TodoHeaderComponent,
-    TodoSectionComponent
+    TodoComponent
   ]
 })
 export class SharedModule { }
@@ -66,7 +62,7 @@ in `pages/todo.component.html`
 ```
 in `pages/todo.component.ts`
 ```ts
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -74,16 +70,11 @@ import { Router } from '@angular/router';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent implements OnInit {
-
+export class TodoComponent {
   constructor(private router: Router) { }
 
   navigateMe(id: number): void {
     this.router.navigate(['/todo', id])
   }
-
-  ngOnInit(): void {
-  }
-
 }
 ```
