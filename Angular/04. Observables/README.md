@@ -1,19 +1,19 @@
 # Observables
 Observables are main and most common used data structure in angular. They were projected to handle data emits on time like soap, http and graphql requests, events and delegates and values emitting over time. They are also new standard for handling asynchronous operations for multiple values. To modify data we couldn't use normal js operations but special rxjs operators. Also while implemeting Observables we have to take care of unsubscribing them in order to avoid memory leak.
 * Creating observables
-  - of
+  - **of**
   ```ts
   values: Observable<number[]> = of([1, 2, 3])
   ```
-  - from
+  - **from**
   ```ts
   values: Observable<number[]> = from([[1, 2, 3]])
   ```
-  - timer
+  - **timer**
   ```ts
   values$: Observable<number> = timer(0, 1000)
   ```
-  - http requests
+  - **http requests**
   ```ts
   values$ = this.http.get(`${url}/todo`)
   ```
