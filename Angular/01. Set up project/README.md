@@ -11,7 +11,7 @@ ng new client
 ### Run project
 in `terminal`
 ```sh
-cd client
+cd client &&
 ng serve
 ```
 ### Check 🚀
