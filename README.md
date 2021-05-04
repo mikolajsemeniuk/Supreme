@@ -21,7 +21,7 @@ subl .
 ```
 and You're ready to go 🚀!
 
-### Tools
+### Needed Tools
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15)
 * [Insomnia](https://insomnia.rest/download)
