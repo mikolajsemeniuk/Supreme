@@ -7,13 +7,13 @@ Supreme full-stack package to develop any kind of applications in any technology
 * Java
 * NodeJS
 
-Just create a directory like below and open with vs code
+Just create a directory like below and open with `Visual Studio Code`
 ```sh
 mkdir app &&
 cd app &&
 code .
 ```
-or sublime
+or `Sublime Text`
 ```sh
 mkdir app &&
 cd app &&
