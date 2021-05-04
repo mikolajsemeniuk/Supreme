@@ -11,17 +11,13 @@ in `modules/shared.module.ts`
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoComponent } from '../pages/todo/todo.component';
-import { TodoHeaderComponent } from '../components/todo-header/todo-header.component';
-import { TodoSectionComponent } from '../components/todo-section/todo-section.component';
 import { RouterModule } from '@angular/router';
 // ADD THIS
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    TodoComponent,
-    TodoHeaderComponent,
-    TodoSectionComponent
+    TodoComponent
   ],
   imports: [
     CommonModule,
@@ -30,9 +26,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   exports: [
-    TodoComponent,
-    TodoHeaderComponent,
-    TodoSectionComponent
+    TodoComponent
   ]
 })
 export class SharedModule { }
