@@ -62,8 +62,8 @@ and then in `src/app/components/todo.component.html`
 ```html
 <p routerLink="/">home works!</p>
 <p routerLink="/todo/{{ 4 }}">click me please</p>
-<p [routerLink]="['/todo', 4]">click me again</p>
-<p (click)="navigateMe(5)">navigate me by ts code</p>
+<p [routerLink]="['/todo', 5]">click me again</p>
+<p (click)="navigateMe(6)">navigate me by ts code</p>
 ```
 in `src/app/pages/todo.component.ts`
 ```ts
