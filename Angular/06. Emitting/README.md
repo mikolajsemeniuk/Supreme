@@ -46,7 +46,7 @@ export class TodoHeaderComponent {
   value: number = 0;
 
   @Output()
-  setValue = new EventEmitter<number>()
+  setValue = new EventEmitter<Event | number>()
 }
 ```
 in `components/todo/todo-header/todo-header.component.html`
