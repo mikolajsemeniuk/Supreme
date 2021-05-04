@@ -11,7 +11,7 @@ dotnet new webapi -o server
 ### Run project
 in `terminal`
 ```sh
-cd server
+cd server &&
 dotnet run
 ```
 ### Check 🚀
