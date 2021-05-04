@@ -44,18 +44,15 @@ import { Component } from '@angular/core';
 })
 export class TodoComponent {
   value = 1
-
-  constructor() { }
 }
-
 ```
 in `pages/todo.component.html`
 ```html
-<p routerLink="/">home works!</p>
 <input [(ngModel)]="value" type="number">
-<ul>
-    <li>{{ value }}</li>
-</ul>
+
+<p>
+  {{ value }}
+</p>
 ```
 ### Models (Observables)
 in `pages/todo.component.ts`
@@ -68,27 +65,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent {
-
   value = new BehaviorSubject<number>(0)
-
-  constructor() { }
 
   valueHandler(input: number) {
     this.value.next(input);
   }
-
 }
 ```
 in `pages/todo.component.html`
 ```html
-<p routerLink="/">home works!</p>
-
 <input [ngModel]="value | async"
     (ngModelChange)="valueHandler($event)"
     type="number">
 
-<ul>
-    <li>{{ value | async }}</li>
-</ul>
+<p>
+  {{ value | async }}
+</p>
 ## Resources
 * [bind observable](https://stackoverflow.com/questions/38844835/extending-angular-2-ngmodel-directive-to-use-observables)
