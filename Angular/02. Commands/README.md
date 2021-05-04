@@ -1,6 +1,5 @@
 # Commands
 * Modules
-* Pages
 * Components
 * Services
 * Models
@@ -53,10 +52,6 @@ import { SharedModule } from './modules/shared.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-```
-### Pages
-in `terminal`
-```sh
 ```
 ### Components
 in `terminal`
