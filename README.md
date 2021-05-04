@@ -27,5 +27,5 @@ and You're ready to go 🚀!
 * [Insomnia](https://insomnia.rest/download)
 * [Visual Studio Code](https://code.visualstudio.com/download)/[Sublime Text](https://www.sublimetext.com/3)
 ### External Resources
-* [Visual Studio Code adding to PATH](https://code.visualstudio.com/docs/setup/mac)
-* [Sublime Text adding to PATH](https://stackoverflow.com/questions/25233133/launch-sublime-text-3-in-terminal-with-zsh)
+* [Visual Studio Code (Adding to PATH)](https://code.visualstudio.com/docs/setup/mac)
+* [Sublime Text (Adding to PATH)](https://stackoverflow.com/questions/25233133/launch-sublime-text-3-in-terminal-with-zsh)
