@@ -1,6 +1,7 @@
 # Bindings
-* Models
-### Models
+* Models (Variables)
+* Models (Observables)
+### Models (Variables)
 in `modules/shared.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
@@ -56,3 +57,4 @@ in `workshop.component.html`
     <li>{{ value }}</li>
 </ul>
 ```
+### Models (Observables)
