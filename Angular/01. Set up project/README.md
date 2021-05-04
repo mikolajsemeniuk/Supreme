@@ -15,4 +15,4 @@ cd client
 ng serve
 ```
 ### Check 🚀
-Go [here](http://localhost:4200/) (http://localhost:4200/)
+Go (http://localhost:4200/)
