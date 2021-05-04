@@ -1,15 +1,15 @@
 # Commands
 * Modules
+* Pages
 * Components
 * Services
 * Models
 * Guards
 
 ### Modules
-Create Module
+in `terminal`
 ```sh
-ng g m modules/shared # with folder
-ng g m modules/shared --flat # without folder
+ng g m modules/shared --flat
 ```
 in `src/app/modules/shared.module.ts`
 ```ts
@@ -21,11 +21,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule
   ],
-  // ADD THIS TO ENABLE ALL
-  // STAFF IN THIS MODULE TO
-  // BE IMPORTED IN `src/app/app.module.ts`
+  // ADD THIS
   exports: [
-    // PUT ALL COMPONENTS, MODELS, SERVICES HERE
   
   ]
 })
@@ -57,17 +54,25 @@ import { SharedModule } from './modules/shared.module';
 })
 export class AppModule { }
 ```
-### Components
-Create Component
+### Pages
+in `terminal`
 ```sh
-ng g c components/home --skipTests=true --module app # global module
-ng g c components/home --skipTests=true --module ./modules/shared # your own module
+```
+### Components
+in `terminal`
+```sh
+ng g c pages/todo --skipTests=true --module ./modules/shared &&
+ng g c components/todo-header --skipTests=true --module ./modules/shared &&
+ng g c components/todo-section --skipTests=true --module ./modules/shared
 ```
 in `src/app/shared/modules/shared.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from '../components/home/home.component';
+// ADD THIS
+import { TodoComponent } from '../pages/todo/todo.component';
+import { TodoHeaderComponent } from '../components/todo-header/todo-header.component';
+import { TodoSectionComponent } from '../components/todo-section/todo-section.component';
 
 @NgModule({
   declarations: [
@@ -78,21 +83,22 @@ import { HomeComponent } from '../components/home/home.component';
   ],
   exports: [
     // ADD THIS MANUALLY
-    HomeComponent
+    TodoComponent,
+    TodoHeaderComponent,
+    TodoSectionComponent
   ]
 })
 export class SharedModule { }
 ```
 ### Services
-Create Service
+in `terminal`
 ```sh
-ng g s services/documents # with tests
-ng g s services/documents --skipTests=true # without tests
+ng g s services/todo --skipTests=true # without tests
 ```
 ### Models
-Create Model
+in `terminal`
 ```sh
-ng generate interface models/document --type=model
+ng generate interface models/todo --type=model
 ```
 ### Guards
 add it later...
