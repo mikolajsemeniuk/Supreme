@@ -29,7 +29,7 @@ Observables are main and most common used data structure in angular. They were p
   - takeUntil
   - effects
 
-#### Resources
+### Resources
 * [Observable vs Promise](https://www.syncfusion.com/blogs/post/angular-promises-versus-observables.aspx)
 * [BehaviourSubject, ReplaySubject, AsyncSubject](https://luukgruijs.medium.com/understanding-rxjs-behaviorsubject-replaysubject-and-asyncsubject-8cc061f1cfc0)
 * [async pipe vs subscribe](https://medium.com/angular-in-depth/angular-question-rxjs-subscribe-vs-async-pipe-in-component-templates-c956c8c0c794)
