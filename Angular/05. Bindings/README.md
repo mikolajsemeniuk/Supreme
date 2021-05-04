@@ -1,6 +1,8 @@
 # Bindings
 * Models (Variables)
 * Models (Observables)
+* ngIf
+* ngFor
 ### Models (Variables)
 in `modules/shared.module.ts`
 ```ts
