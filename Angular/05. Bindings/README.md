@@ -81,5 +81,6 @@ in `pages/todo.component.html`
 <p>
   {{ value | async }}
 </p>
+```
 ## Resources
 * [bind observable](https://stackoverflow.com/questions/38844835/extending-angular-2-ngmodel-directive-to-use-observables)
