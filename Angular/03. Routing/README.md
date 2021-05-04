@@ -28,7 +28,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 ```
 ### Navigate
-if your component is **NOT IN APP MODULE** then add this to your module component
+in `modules/shared.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -56,16 +56,15 @@ import { RouterModule } from '@angular/router';
   ]
 })
 export class SharedModule { }
-
 ```
-and then in `src/app/components/todo.component.html`
+in `pages/todo.component.html`
 ```html
 <p routerLink="/">home works!</p>
 <p routerLink="/todo/{{ 4 }}">click me please</p>
 <p [routerLink]="['/todo', 5]">click me again</p>
 <p (click)="navigateMe(6)">navigate me by ts code</p>
 ```
-in `src/app/pages/todo.component.ts`
+in `pages/todo.component.ts`
 ```ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
