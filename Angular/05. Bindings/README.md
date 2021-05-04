@@ -1,9 +1,11 @@
 # Bindings
+* Add module
 * Models (Variables)
 * Models (Observables)
 * ngIf
 * ngFor
-### Models (Variables)
+
+### Add module
 in `modules/shared.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
@@ -35,6 +37,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SharedModule { }
 ```
+### Models (Variables)
 in `pages/todo.component.ts`
 ```ts
 import { Component } from '@angular/core';
