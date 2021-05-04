@@ -18,11 +18,11 @@ Observables are main and most common used data structure in angular. They were p
   values$ = this.http.get(`${url}/todo`)
   ```
 * Kinds of observables
-  - Observable
-  - Subject
-  - BehaviourSubject
-  - ReplaySubject
-  - AsyncSubject
+  - Observable -> read only via `subscription`, no option to get or modify data except assign to new value
+  - Subject -> the same as `Observable` but has `next` method which allows to set new value without assigning new item
+  - BehaviourSubject -> the same as `Subject` but has ability to modify data using `values` and js functions like `push`, `split`
+  - ReplaySubject -> the same as `BehaviourSubject` but has option to set amount of data to store and time of store
+  - AsyncSubject -> send only last value to subscribers after completing
 * Operators
   - pipe
   - map
