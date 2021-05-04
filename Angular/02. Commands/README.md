@@ -56,18 +56,14 @@ export class AppModule { }
 ### Components
 in `terminal`
 ```sh
-ng g c pages/todo --skipTests=true --module ./modules/shared &&
-ng g c components/todo-header --skipTests=true --module ./modules/shared &&
-ng g c components/todo-section --skipTests=true --module ./modules/shared
+ng g c components/todo --skipTests=true --module ./modules/shared
 ```
 in `src/app/shared/modules/shared.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // ADD THIS
-import { TodoComponent } from '../pages/todo/todo.component';
-import { TodoHeaderComponent } from '../components/todo-header/todo-header.component';
-import { TodoSectionComponent } from '../components/todo-section/todo-section.component';
+import { TodoComponent } from '../components/todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -78,9 +74,7 @@ import { TodoSectionComponent } from '../components/todo-section/todo-section.co
   ],
   exports: [
     // ADD THIS MANUALLY
-    TodoComponent,
-    TodoHeaderComponent,
-    TodoSectionComponent
+    TodoComponent
   ]
 })
 export class SharedModule { }
