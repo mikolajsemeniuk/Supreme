@@ -10,10 +10,10 @@ npm install -g @angular/cli
 ```
 ### Create Project
 ```sh
-ng new project
+ng new UI
 ```
 ### Run project
 ```sh
-cd project
+cd UI
 ng serve
 ```
