@@ -21,12 +21,12 @@ subl .
 ```
 and You're ready to go 🚀!
 
-### Needed Tools
+## Needed Tools
 * [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 * [Docker](https://www.docker.com/products/docker-desktop)
 * [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15)
 * [Insomnia](https://insomnia.rest/download)
 * [Visual Studio Code](https://code.visualstudio.com/download)/[Sublime Text](https://www.sublimetext.com/3)
-### External Resources
+## External Resources
 * [Visual Studio Code (Adding to PATH)](https://code.visualstudio.com/docs/setup/mac)
 * [Sublime Text (Adding to PATH)](https://stackoverflow.com/questions/25233133/launch-sublime-text-3-in-terminal-with-zsh)
