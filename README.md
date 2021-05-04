@@ -21,9 +21,11 @@ subl .
 ```
 and You're ready to go 🚀!
 
-### Resources
-* Docker
-* Azure Data Studio
-* Insomnia
-* Visual Studio Code/Sublime Text
-
+### Tools
+* [Docker](https://www.docker.com/products/docker-desktop)
+* [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver15)
+* [Insomnia](https://insomnia.rest/download)
+* [Visual Studio Code](https://code.visualstudio.com/download)/[Sublime Text](https://www.sublimetext.com/3)
+### External Resources
+* [Visual Studio Code](https://code.visualstudio.com/docs/setup/mac)
+* [Sublime Text](https://stackoverflow.com/questions/25233133/launch-sublime-text-3-in-terminal-with-zsh)
