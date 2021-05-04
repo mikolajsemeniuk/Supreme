@@ -49,15 +49,15 @@ export class TodoService {
 
   getTodos(): Observable<Todo[]> {
     return of(data)
-    .pipe(
-      switchMap((todos: Todo[]): BehaviorSubject<Todo[]> => {
-        this.todos$.next(todos)
-        return this.todos$
-      }),
-      catchError(_ => {
-        return of([])
-      })
-    )
+      .pipe(
+        switchMap((todos: Todo[]): BehaviorSubject<Todo[]> => {
+          this.todos$.next(todos)
+          return this.todos$
+        }),
+        catchError(_ => {
+          return of([])
+        })
+      )
   }
 
   addTodo(todo: Todo): Observable<Todo> {
