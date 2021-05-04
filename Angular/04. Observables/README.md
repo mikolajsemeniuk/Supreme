@@ -3,6 +3,7 @@ Observables are main and most common used data structure in angular. They were p
 * Creating observables
   - of
   - from
+  - timer
   - http requests
 * Kinds of observables
   - Observable
