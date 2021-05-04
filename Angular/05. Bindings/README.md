@@ -33,7 +33,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SharedModule { }
 ```
-in `workshop.component.ts`
+in `pages/todo.component.ts`
 ```ts
 import { Component } from '@angular/core';
 
@@ -49,7 +49,7 @@ export class TodoComponent {
 }
 
 ```
-in `workshop.component.html`
+in `pages/todo.component.html`
 ```html
 <p routerLink="/">home works!</p>
 <input [(ngModel)]="value" type="number">
@@ -58,5 +58,37 @@ in `workshop.component.html`
 </ul>
 ```
 ### Models (Observables)
+in `pages/todo.component.ts`
+```ts
+import { Component } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+@Component({
+  selector: 'app-todo',
+  templateUrl: './todo.component.html',
+  styleUrls: ['./todo.component.scss']
+})
+export class TodoComponent {
+
+  value = new BehaviorSubject<number>(0)
+
+  constructor() { }
+
+  valueHandler(input: number) {
+    this.value.next(input);
+  }
+
+}
+```
+in `pages/todo.component.html`
+```html
+<p routerLink="/">home works!</p>
+
+<input [ngModel]="value | async"
+    (ngModelChange)="valueHandler($event)"
+    type="number">
+
+<ul>
+    <li>{{ value | async }}</li>
+</ul>
 ## Resources
 * [bind observable](https://stackoverflow.com/questions/38844835/extending-angular-2-ngmodel-directive-to-use-observables)
