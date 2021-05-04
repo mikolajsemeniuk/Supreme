@@ -30,19 +30,17 @@ export class AppModule { }
 ```
 in `workshop.component.ts`
 ```ts
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent {
   value = 1
 
   constructor() { }
-
-  ngOnInit(): void { }
 }
 
 ```
