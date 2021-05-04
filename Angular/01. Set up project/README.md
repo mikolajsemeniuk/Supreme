@@ -1,5 +1,5 @@
 # Set up project
-* Install CLI (❗if You do not have it)
+* Install CLI (❗**if You do not have it**)
 * Create Project
 * Run project
 
