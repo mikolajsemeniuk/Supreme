@@ -10,7 +10,13 @@ Observables are main and most common used data structure in angular. They were p
   values: Observable<number[]> = from([[1, 2, 3]])
   ```
   - timer
+  ```ts
+  values$: Observable<number> = timer(0, 1000)
+  ```
   - http requests
+  ```ts
+  values$ = this.http.get(`${url}/todo`)
+  ```
 * Kinds of observables
   - Observable
   - Subject
