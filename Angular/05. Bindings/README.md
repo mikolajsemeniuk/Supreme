@@ -1,32 +1,34 @@
 # Bindings
 * Models
 ### Models
-in `app.module.ts`
+in `modules/shared.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { SharedModule } from './modules/shared.module';
-// ADD THIS
+import { CommonModule } from '@angular/common';
+import { TodoComponent } from '../pages/todo/todo.component';
+import { TodoHeaderComponent } from '../components/todo-header/todo-header.component';
+import { TodoSectionComponent } from '../components/todo-section/todo-section.component';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    TodoComponent,
+    TodoHeaderComponent,
+    TodoSectionComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    // ADD THIS
+    CommonModule,
+    RouterModule,
     FormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [
+    TodoComponent,
+    TodoHeaderComponent,
+    TodoSectionComponent
+  ]
 })
-export class AppModule { }
+export class SharedModule { }
 ```
 in `workshop.component.ts`
 ```ts
