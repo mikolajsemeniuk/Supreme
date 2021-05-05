@@ -24,10 +24,10 @@ Observables are main and most common used data structure in angular. They were p
   - **ReplaySubject** -> the same as `BehaviourSubject` but has option to set amount of data to store and time of store
   - **AsyncSubject** -> send only last value to subscribers after completing
 * Operators
-  - pipe
-  - map
-  - tap
-  - filter
+  - **pipe** -> chain operators and maps
+  - **map** -> modify data
+  - **tap** -> allow to modify data and access them but returns original data
+  - **filter** -> filter and modify data
 * Maps
   - switchMap
   - mergeMap,
