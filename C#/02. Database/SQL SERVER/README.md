@@ -9,9 +9,6 @@
 ### Create container
 in `terminal`
 ```sh
-# IF YOU DO NOT HAVE IT
-sudo docker pull mcr.microsoft.com/mssql/server:2019-latest
-
 # servername: "localhost" / "127.0.0.1"
 # login: "sa"
 # Password is "Passw0rd!" 
