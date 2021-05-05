@@ -63,7 +63,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent {
-  todo$ = new BehaviorSubject<TodoInput>({ title: '', description: '', isDone: false })
+  todo$ = new BehaviorSubject<number>(0)
 
   valueHandler(input: number) {
     this.value.next(input);
