@@ -81,3 +81,8 @@ ng generate action store/Todo --flat false --skipTests=true
 ```sh
 ng generate selector store/Todo --flat false --skipTests=true
 ```
+### Add effect
+```sh
+ng add @ngrx/effects@latest
+ng generate effect store/Todo --flat false --root -m app.module.ts --skipTests=true
+```
