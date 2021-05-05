@@ -46,8 +46,8 @@ export class TodoComponent {
 ```
 in `pages/todo.component.html`
 ```html
+<p routerLink="/">go home</p>
 <input [(ngModel)]="value" type="number">
-
 <p>
   {{ value }}
 </p>
@@ -72,10 +72,10 @@ export class TodoComponent {
 ```
 in `pages/todo.component.html`
 ```html
+<p routerLink="/">go home</p>
 <input [ngModel]="value | async"
     (ngModelChange)="valueHandler($event)"
     type="number">
-
 <p>
   {{ value | async }}
 </p>
