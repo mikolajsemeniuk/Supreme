@@ -7,8 +7,7 @@ in `terminal`
 ```sh
 ng add @ngrx/schematics@latest &&
 ng add @ngrx/store@latest --minimal false &&
-ng add @ngrx/effects@latest &&
-ng add @ngrx/store-devtools@latest
+ng add @ngrx/effects@latest
 ```
 ### Add Store
 in `terminal`
