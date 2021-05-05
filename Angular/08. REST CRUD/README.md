@@ -126,6 +126,14 @@ export class TodoService {
       )
   }
 
+  getTodo(id: number): Observable<TodoPayload> {
+    return this.http.get<TodoPayload>(`${environment.apiUrl}/${this.path}/${id}`).pipe(
+      shareReplay(),
+      catchError(_ => EMPTY),
+      first()
+    )
+  }
+
   addTodo(input: TodoInput): Observable<TodoPayload> {
     return this.http.post<TodoPayload>(`${environment.apiUrl}/${this.path}`, input)
       .pipe(
