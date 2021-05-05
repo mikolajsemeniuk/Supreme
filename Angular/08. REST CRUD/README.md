@@ -94,5 +94,77 @@ export interface TodoPayload {
 ### Modify service
 in `services/todo.service.ts`
 ```ts
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
+import { TodoPayload } from '../models/todo-payload.model';
+import { catchError, first, shareReplay, switchMap, tap } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
+import { TodoInput } from '../models/todo-input.model';
 
+@Injectable({
+  providedIn: 'root'
+})
+export class TodoService {
+  private path: string = 'todo'
+
+  todos$ = new BehaviorSubject<TodoPayload[]>([])
+
+  constructor(private http: HttpClient) { }
+
+  getTodos(): Observable<TodoPayload[]> {
+    return this.http.get<TodoPayload[]>(`${environment.apiUrl}/${this.path}`)
+      .pipe(
+        shareReplay(),
+        switchMap((todos: TodoPayload[]): BehaviorSubject<TodoPayload[]> => {
+          this.todos$.next(todos)
+          return this.todos$
+        }),
+        catchError(_ => {
+          return of([])
+        })
+      )
+  }
+
+  addTodo(input: TodoInput): Observable<TodoPayload> {
+    return this.http.post<TodoPayload>(`${environment.apiUrl}/${this.path}`, input)
+      .pipe(
+        shareReplay(),
+        tap((todo: TodoPayload): void => {
+          const values: TodoPayload[] = [...this.todos$.value, todo]
+          this.todos$.next(values)
+        }),
+        catchError(_ => EMPTY),
+        first()
+      )
+  }
+
+  setTodo(id: number, input: TodoInput): Observable<TodoPayload> {
+    return this.http.put<TodoPayload>(`${environment.apiUrl}/${this.path}/${id}`, input)
+      .pipe(
+        shareReplay(),
+        tap((todo: TodoPayload): void => {
+          const values: TodoPayload[] = [...this.todos$.value]
+          const valueIndex: number = values.findIndex((item: TodoPayload) => item.id === id)
+          values[valueIndex] = todo
+          this.todos$.next(values)
+        }),
+        catchError(_ => EMPTY),
+        first()
+      )
+  }
+
+  removeTodo(id: number): Observable<TodoPayload> {
+    return this.http.delete<TodoPayload>(`${environment.apiUrl}/${this.path}/${id}`)
+      .pipe(
+        shareReplay(),
+        tap((todo: TodoPayload): void => {
+          const values: TodoPayload[] = this.todos$.value.filter(value => value.id !== todo.id)
+          this.todos$.next(values)
+        }),
+        catchError(_ => EMPTY),
+        first()
+      )
+  }
+}
 ```
