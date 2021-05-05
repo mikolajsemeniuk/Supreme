@@ -1,4 +1,5 @@
 # CRUD - HTTP
+* Allow CORS
 * Create Model
 * Modify DbContext
 * Create migration and update db
@@ -7,7 +8,38 @@
 * Create Repository
 * Register service
 * Create Controller
+### Allow CORS
+in `Startup.cs`
+```cs
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    // ...
+    app.UseHttpsRedirection();
 
+    // JWT
+    app.UseCors(options => options
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowAnyOrigin());
+	
+    // cookie	
+    app.UseCors(options => options
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .WithOrigins("https://localhost:4200")
+        .SetIsOriginAllowed(origin => true)
+        .AllowCredentials());
+
+    app.UseRouting();
+
+    app.UseAuthorization();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    });
+}
+```
 ### Create Model
 in `Models/Todo.cs`
 ```cs
