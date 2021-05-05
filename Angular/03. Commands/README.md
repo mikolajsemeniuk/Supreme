@@ -39,7 +39,7 @@ export class AppModule { }
 ### Components
 in `terminal`
 ```sh
-ng g c components/todo --skipTests=true --module ./modules/shared
+ng g c pages/todo --skipTests=true --module ./modules/shared
 ```
 in `src/app/shared/modules/shared.module.ts`
 ```ts
