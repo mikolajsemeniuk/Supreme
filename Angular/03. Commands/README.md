@@ -10,23 +10,6 @@ in `terminal`
 ```sh
 ng g m modules/shared --flat
 ```
-in `src/app/modules/shared.module.ts`
-```ts
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ],
-  // ADD THIS
-  exports: [
-  
-  ]
-})
-export class SharedModule { }
-```
 in `src/app/app.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
