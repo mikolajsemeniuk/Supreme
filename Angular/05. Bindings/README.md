@@ -12,7 +12,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoComponent } from '../pages/todo/todo.component';
 import { RouterModule } from '@angular/router';
-// ADD THIS
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -30,6 +29,7 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class SharedModule { }
+
 ```
 ### Models (Variables)
 in `pages/todo.component.ts`
