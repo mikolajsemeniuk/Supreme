@@ -48,4 +48,6 @@ in `pages/todo.component.html`
 in `app.component.html`
 ```html
 <p routerLink="/todo">go todo</p>
+
+<router-outlet></router-outlet>
 ```
