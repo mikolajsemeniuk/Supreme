@@ -37,7 +37,7 @@ namespace server.Data
 	{
 		public DataContext(DbContextOptions options) : base(options)
 		{
-			
+
 		}
 	}
 }
@@ -47,12 +47,12 @@ in `Startup.cs`
 ```cs
 public void ConfigureServices(IServiceCollection services)
 {
-    // ...
-    services.AddDbContext<DataContext>(options =>
-    {
-        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-    });
-    // ...
+        // ...
+        services.AddDbContext<DataContext>(options =>
+        {
+	        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+        });
+        // ...
 }
 ```
 ### Add ConnectionString
