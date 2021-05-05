@@ -369,4 +369,5 @@ export class TodoService {
 }
 ```
 ## Resources
+* [ngrx - docs](https://ngrx.io/guide/store)
 * [flatMap (remeber to reset vscode after change `tsconfig.json`)](https://stackoverflow.com/questions/53556409/typescript-flatmap-flat-flatten-doesnt-exist-on-type-any)
