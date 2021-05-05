@@ -63,7 +63,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent {
-  value = new BehaviorSubject<number>(0)
+  todo$ = new BehaviorSubject<TodoInput>({ title: '', description: '', isDone: false })
 
   valueHandler(input: number) {
     this.value.next(input);
@@ -84,7 +84,8 @@ in `pages/todo.component.html`
 in `pages/todo/todo.component.ts`
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { TodoInput } from 'src/app/models/todo-input.model';
 import { TodoPayload } from 'src/app/models/todo-payload.model';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -95,6 +96,7 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class TodoComponent implements OnInit {
   todos$ = new Observable<TodoPayload[]>()
+  todo$ = new BehaviorSubject<TodoInput>({ title: '', description: '', isDone: false })
   
   constructor(private service: TodoService) { }
 
@@ -103,11 +105,32 @@ export class TodoComponent implements OnInit {
   getTodos(): void {
     this.todos$ = this.service.getTodos()
   }
+
+  setTodo(payload: any, current: TodoInput): void {
+    this.todo$.next({ ...current, ...payload })
+  }
+
+  removeTodo(id: number): void {
+    this.service
+      .removeTodo(id)
+      .subscribe()
+  }
 }
 ```
 in `pages/todo/todo.component.html`
 ```html
 <p routerLink="/">go home</p>
+
+<h2>
+    Add new
+</h2>
+<div *ngIf="todo$ | async as todo">
+    <input (ngModelChange)="setTodo({ title: $event }, todo)" [ngModel]="todo.title" type="text">
+    <input (ngModelChange)="setTodo({ description: $event }, todo)" [ngModel]="todo.description" type="text">
+    <input (ngModelChange)="setTodo({ isDone: $event }, todo)" [ngModel]="todo.isDone" type="checkbox">
+</div>
+your object:<br>
+{{ todo$ | async | json }}
 
 <ng-container *ngIf="todos$ | async as todos" else #loading>
     <div *ngFor="let todo of todos" style="margin: 50px;padding:40px;border:solid 1px black">
@@ -122,6 +145,9 @@ in `pages/todo/todo.component.html`
         </p>
         <p>
             {{ todo.updated }}
+        </p>
+        <p>
+            <span (click)="removeTodo(todo.id)" style="color:red">delete me</span>
         </p>
     </div>
     <div *ngIf="todos.length == 0">
