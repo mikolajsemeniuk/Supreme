@@ -106,8 +106,27 @@ export class TodoComponent implements OnInit {
     this.todos$ = this.service.getTodos()
   }
 
-  setTodo(payload: any, current: TodoInput): void {
+  setTodoInput(payload: any, current: TodoInput): void {
     this.todo$.next({ ...current, ...payload })
+  }
+
+  addTodo(): void {
+    if (this.todo$.value.title === "" || this.todo$.value.description === "")
+      return
+    this.service
+      .addTodo(this.todo$.value)
+      .subscribe()
+  }
+
+  setTodo(id: number): void {
+    let todo: TodoInput = {
+      title: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5),
+      description: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10),
+      isDone: Math.random() < 0.5
+    }
+    this.service
+      .setTodo(id, todo)
+      .subscribe()
   }
 
   removeTodo(id: number): void {
@@ -124,15 +143,15 @@ in `pages/todo/todo.component.html`
 <h2>
     Add new
 </h2>
-<div *ngIf="todo$ | async as todo">
-    <input (ngModelChange)="setTodo({ title: $event }, todo)" [ngModel]="todo.title" type="text">
-    <input (ngModelChange)="setTodo({ description: $event }, todo)" [ngModel]="todo.description" type="text">
-    <input (ngModelChange)="setTodo({ isDone: $event }, todo)" [ngModel]="todo.isDone" type="checkbox">
+<div *ngIf="(todo$ | async) as todo">
+    <input (ngModelChange)="setTodoInput({ title: $event }, todo)" [ngModel]="todo.title" type="text">
+    <input (ngModelChange)="setTodoInput({ description: $event }, todo)" [ngModel]="todo.description" type="text">
+    <input (ngModelChange)="setTodoInput({ isDone: $event }, todo)" [ngModel]="todo.isDone" type="checkbox">
 </div>
-your object:<br>
-{{ todo$ | async | json }}
 
-<ng-container *ngIf="todos$ | async as todos" else #loading>
+<button (click)="addTodo()">add me</button>
+
+<ng-container *ngIf="(todos$ | async) as todos else loading">
     <div *ngFor="let todo of todos" style="margin: 50px;padding:40px;border:solid 1px black">
         <p>
             {{ todo.id }}
@@ -141,10 +160,19 @@ your object:<br>
             {{ todo.title }}
         </p>
         <p>
+            {{ todo.description }}
+        </p>
+        <p>
             {{ todo.created }}
         </p>
         <p>
             {{ todo.updated }}
+        </p>
+        <p>
+            {{ todo.isDone }}
+        </p>
+        <p>
+            <span (click)="setTodo(todo.id)" style="color:green">edit me</span>
         </p>
         <p>
             <span (click)="removeTodo(todo.id)" style="color:red">delete me</span>
@@ -155,7 +183,7 @@ your object:<br>
     </div>
 </ng-container>
 <ng-template #loading>
-    loading...
+    Observable is loading. Please wait
 </ng-template>
 ```
 ## Resources
