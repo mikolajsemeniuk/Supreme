@@ -65,7 +65,7 @@ in `server/Properties`
 ### Update database
 in `terminal`
 ```sh
-dotnet ef migrations add InitialCreate
+dotnet ef migrations add InitialCreate &&
 dotnet ef database update 
 ```
 ## Resources
