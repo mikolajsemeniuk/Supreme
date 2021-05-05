@@ -107,8 +107,8 @@ import { TodoInput } from '../models/todo-input.model';
 })
 export class TodoService {
   private path: string = 'todo'
-
   todos$ = new BehaviorSubject<TodoPayload[]>([])
+  todo$ = new BehaviorSubject<TodoPayload | null>(null)
 
   constructor(private http: HttpClient) { }
 
