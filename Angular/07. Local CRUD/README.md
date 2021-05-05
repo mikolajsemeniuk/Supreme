@@ -102,51 +102,90 @@ export class TodoService {
 ### Configure component
 in `components/todo/todo.component.ts`
 ```ts
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Todo } from 'src/app/models/todo.model';
-import { TodoService } from 'src/app/services/todo.service';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
+import { catchError, first, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { Todo } from '../models/todo.model';
 
 // helper
-let index = 3
+let data = [
+  {
+    id: 1,
+    title: 'one',
+    description: 'first',
+    createdAt: new Date,
+    isDone: false
+  },
+  {
+    id: 2,
+    title: 'two',
+    description: 'second',
+    createdAt: new Date,
+    isDone: true
+  }
+]
 
-@Component({
-  selector: 'app-todo',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+@Injectable({
+  providedIn: 'root'
 })
-export class TodoComponent implements OnInit {
-  todos$ = new Observable<Todo[]>()
+export class TodoService {
+  todos$ = new BehaviorSubject<Todo[]>([])
 
-  constructor(private service: TodoService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.getTodos()
+  getTodos(): Observable<Todo[]> {
+    return of(data)
+    .pipe(
+      shareReplay(),
+      switchMap((todos: Todo[]): BehaviorSubject<Todo[]> => {
+        this.todos$.next(todos)
+        return this.todos$
+      }),
+      catchError(_ => {
+        return of([])
+      })
+    )
   }
 
-  getTodos(): void {
-    this.todos$ = this.service.getTodos()
+  addTodo(todo: Todo): Observable<Todo> {
+    return of(todo)
+      .pipe(
+        shareReplay(),
+        tap((todo: Todo): void => {
+          const values: Todo[] = [...this.todos$.value, todo]
+          this.todos$.next(values)
+        }),
+        catchError(_ => EMPTY),
+        first()
+      )
   }
 
-  addTodo(todo = { id: index++, title: 'seven', description: 'seventh', createdAt: new Date, isDone: false }): void {
-    this.service
-      .addTodo(todo)
-      .subscribe()
+  setTodo(id: number, todo: Todo): Observable<Todo> {
+    return of(todo)
+      .pipe(
+        shareReplay(),
+        tap((todo: Todo): void => {
+          const values: Todo[] = [...this.todos$.value]
+          const valueIndex: number = values.findIndex((item: Todo) => item.id === id)
+          values[valueIndex] = todo
+          this.todos$.next(values)
+        }),
+        catchError(_ => EMPTY),
+        first()
+      )
   }
 
-  setTodo(id: number, todo: Todo): void {
-    // helper
-    todo.createdAt = new Date
-    todo.isDone = !todo.isDone
-    this.service
-      .setTodo(id, todo)
-      .subscribe()
-  }
-
-  removeTodo(id: number): void {
-    this.service
-      .removeTodo(id)
-      .subscribe()
+  removeTodo(id: number): Observable<Todo> {
+    return of(this.todos$.value[0])
+      .pipe(
+        shareReplay(),
+        tap(_ => {
+          const values: Todo[] = this.todos$.value.filter(value => value.id !== id)
+          this.todos$.next(values)
+        }),
+        catchError(_ => EMPTY),
+        first()
+      )
   }
 }
 ```
