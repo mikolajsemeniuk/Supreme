@@ -2,8 +2,7 @@
 * Add module
 * Models (Variables)
 * Models (Observables)
-* ngIf
-* ngFor
+* ngFor, ngIf
 
 ### Add module
 in `modules/shared.module.ts`
@@ -80,6 +79,58 @@ in `pages/todo.component.html`
 <p>
   {{ value | async }}
 </p>
+```
+### ngFor, ngIf
+in `pages/todo/todo.component.ts`
+```ts
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TodoPayload } from 'src/app/models/todo-payload.model';
+import { TodoService } from 'src/app/services/todo.service';
+
+@Component({
+  selector: 'app-todo',
+  templateUrl: './todo.component.html',
+  styleUrls: ['./todo.component.scss']
+})
+export class TodoComponent implements OnInit {
+  todos$ = new Observable<TodoPayload[]>()
+  
+  constructor(private service: TodoService) { }
+
+  ngOnInit(): void { this.getTodos() }
+
+  getTodos(): void {
+    this.todos$ = this.service.getTodos()
+  }
+}
+```
+in `pages/todo/todo.component.html`
+```html
+<p routerLink="/">go home</p>
+
+<ng-container *ngIf="todos$ | async as todos" else #loading>
+    <div *ngFor="let todo of todos" style="margin: 50px;padding:40px;border:solid 1px black">
+        <p>
+            {{ todo.id }}
+        </p>
+        <p>
+            {{ todo.title }}
+        </p>
+        <p>
+            {{ todo.created }}
+        </p>
+        <p>
+            {{ todo.updated }}
+        </p>
+    </div>
+    <div *ngIf="todos.length == 0">
+        you have no todos :(
+    </div>
+</ng-container>
+<ng-template #loading>
+    loading...
+</ng-template>
 ```
 ## Resources
 * [bind observable](https://stackoverflow.com/questions/38844835/extending-angular-2-ngmodel-directive-to-use-observables)
