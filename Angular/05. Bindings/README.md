@@ -66,18 +66,18 @@ export class TodoComponent {
   value$ = new BehaviorSubject<number>(0)
 
   valueHandler(input: number) {
-    this.value.next(input);
+    this.value$.next(input);
   }
 }
 ```
 in `pages/todo.component.html`
 ```html
 <p routerLink="/">go home</p>
-<input [ngModel]="value | async"
+<input [ngModel]="value$ | async"
     (ngModelChange)="valueHandler($event)"
     type="number">
 <p>
-  {{ value | async }}
+  {{ value$ | async }}
 </p>
 ```
 ### ngFor, ngIf
