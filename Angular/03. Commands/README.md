@@ -14,11 +14,8 @@ in `src/app/app.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-// ADD THIS
 import { SharedModule } from './modules/shared.module';
 
 @NgModule({
@@ -45,8 +42,7 @@ in `src/app/shared/modules/shared.module.ts`
 ```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// ADD THIS
-import { TodoComponent } from '../components/todo/todo.component';
+import { TodoComponent } from '../pages/todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -55,8 +51,8 @@ import { TodoComponent } from '../components/todo/todo.component';
   imports: [
     CommonModule
   ],
+  // ADD THIS MANUALLY
   exports: [
-    // ADD THIS MANUALLY
     TodoComponent
   ]
 })
@@ -65,12 +61,13 @@ export class SharedModule { }
 ### Services
 in `terminal`
 ```sh
-ng g s services/todo --skipTests=true # without tests
+ng g s services/todo --skipTests=true
 ```
 ### Models
 in `terminal`
 ```sh
-ng generate interface models/todo --type=model
+ng generate interface models/todo-input --type=model &&
+ng generate interface models/todo-payload --type=model
 ```
 ### Guards
 add it later...
