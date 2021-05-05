@@ -234,16 +234,12 @@ namespace server.Controllers
 }
 ```
 ## Tests
-```
-https://localhost:5001/todo
-https://localhost:5001/todo/2
-https://localhost:5001/todo
-https://localhost:5001/todo/2
-https://localhost:5001/todo/3
+* https://localhost:5001/todo
+* https://localhost:5001/todo/{id}
+```json
 {
 	"Title": "docker",
 	"Description": "lorem ipsum 2",
 	"IsDone": true
 }
 ```
-   
