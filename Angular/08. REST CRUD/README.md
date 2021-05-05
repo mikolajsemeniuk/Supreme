@@ -1,6 +1,7 @@
 # REST CRUD
 * Route page
 * Add module
+* Set models
 
 ### Route page
 In `app-routing.module.ts`
@@ -46,4 +47,24 @@ import { HttpClientModule } from '@angular/common/http';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+```
+### Set models
+in `models/todo-input.model.ts`
+```ts
+export interface TodoInput {
+    title: string
+    description: string
+    isDone: boolean
+}
+```
+in `models/todo-payload.model.ts`
+```ts
+export interface TodoPayload {
+    id: number
+    title: string
+    description: string
+    created: Date
+    updated: Date
+    isDone: boolean
+}
 ```
