@@ -72,7 +72,7 @@ in `app.component.html`
 in `pages/home.component.ts`
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -80,12 +80,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent implements OnInit {
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void { }
 
-  navigateMe(id: number): void {
-    this.router.navigate(['/home', id])
-  }
+  /*
+    constructor(private router: Router) { }
+
+    navigateMe(id: number): void {
+      this.router.navigate(['/home', id])
+    }
+  */
 }
 ```
