@@ -1,7 +1,9 @@
 # REST CRUD
 * Route page
 * Add module
+* Set url
 * Set models
+* Modify service
 
 ### Route page
 In `app-routing.module.ts`
@@ -48,6 +50,27 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppModule { }
 ```
+### Set url
+in `src/environments/environment.ts`
+```ts
+// This file can be replaced during build by using the `fileReplacements` array.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// The list of file replacements can be found in `angular.json`.
+
+export const environment = {
+  apiUrl: 'https://localhost:5001',
+  production: false
+};
+
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
+ */
+// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+```
 ### Set models
 in `models/todo-input.model.ts`
 ```ts
@@ -67,4 +90,9 @@ export interface TodoPayload {
     updated: Date
     isDone: boolean
 }
+```
+### Modify service
+in `services/todo.service.ts`
+```ts
+
 ```
