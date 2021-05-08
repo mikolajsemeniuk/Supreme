@@ -19,14 +19,14 @@ mkdir app &&
 cd app &&
 subl .
 ```
-## Add to github
+## Add to empty github repo
 ```
-# echo "# REPO_NAME" >> README.md
-git init
-# git add README.md
-# git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/mikolajs123/REPO_NAME.git
+echo "# REPO_NAME" >> README.md &&
+git init &&
+git add README.md &&
+git commit -m "first commit" &&
+git branch -M main &&
+git remote add origin https://github.com/mikolajs123/REPO_NAME.git &&
 git push -u origin main
 ```
 and You're ready to go 🚀!
