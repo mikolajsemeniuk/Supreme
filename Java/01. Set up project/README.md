@@ -45,4 +45,4 @@ in `terminal`
 ./mvnw spring-boot:run
 ```
 ### Check 🚀
-Go (https://localhost:8080)
+Go (http://localhost:8080)
