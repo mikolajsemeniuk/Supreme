@@ -4,7 +4,7 @@ Supreme full-stack package to develop any kind of applications in any technology
 * React
 * Vue
 * [C#](https://github.com/mikolajs123/Supreme/tree/main/C%23)
-* Java
+* [Java](https://github.com/mikolajs123/Supreme/tree/main/Java)
 * NodeJS
 
 Just create a directory like below and open with `Visual Studio Code`
