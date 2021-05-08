@@ -7,7 +7,7 @@
 spring init \
     --java-version=1.8 \
     --dependencies=web \
-    server &&
+    server
 ```
 
 ### Run project
