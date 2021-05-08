@@ -1,6 +1,7 @@
-# Setup Project
+# Set up project
 * Create project
 * Run project
+* Check
 
 ### Create project
 ```sh
@@ -43,3 +44,5 @@ in `terminal`
 ```sh
 ./mvnw spring-boot:run
 ```
+### Check 🚀
+Go (https://localhost:8080)
