@@ -84,7 +84,6 @@ dotnet ef database update
 ### Create Input and Payload
 in `DTO/TodoInput.cs`
 ```cs
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace server.DTO
@@ -96,7 +95,7 @@ namespace server.DTO
 		[Required]
 		public string Description { get; set; }
 		[Required]
-		public Boolean IsDone { get; set; }
+		public bool IsDone { get; set; }
 	}
 }
 ```
