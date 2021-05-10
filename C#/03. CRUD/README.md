@@ -1,14 +1,15 @@
 # CRUD - HTTP
 * Allow CORS
-* Create Custom Exception Page
-* Create Model
+* Create custom exception page
+* Create model
 * Modify DbContext
 * Create migration and update db
-* Create Input and Payload
-* Create Interface
-* Create Repository
+* Create input and payload
+* Create interface
+* Create repository
 * Register service
-* Create Controller
+* Create controller
+* Seed database
 ### Allow CORS
 in `Startup.cs`
 ```cs
@@ -41,7 +42,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     });
 }
 ```
-### Create Custom Exception Page
+### Create custom exception page
 in `Exceptions/ApiException.cs`
 ```cs
 namespace server.Exceptions
@@ -141,7 +142,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     // ...
 }
 ```
-### Create Model
+### Create model
 in `Models/Todo.cs`
 ```cs
 using System;
@@ -182,7 +183,7 @@ dotnet ef database drop &&
 dotnet ef migrations add Todos &&
 dotnet ef database update 
 ```
-### Create Input and Payload
+### Create input and payload
 in `DTO/TodoInput.cs`
 ```cs
 using System.ComponentModel.DataAnnotations;
@@ -219,7 +220,7 @@ namespace server.DTO
 	}
 }
 ```
-### Create Interface
+### Create interface
 in `Interfaces/ITodoRepository.cs`
 ```cs
 using System.Collections.Generic;
@@ -239,7 +240,7 @@ namespace server.Interfaces
     }
 }
 ```
-### Create Repository
+### Create repository
 in `Services/TodoRepository.cs`
 ```cs
 using System;
@@ -325,7 +326,7 @@ public void ConfigureServices(IServiceCollection services)
     // ...
 }
 ```
-### Create Controller
+### Create controller
 in `Controllers/TodoController.cs`
 ```cs
 using System.Collections.Generic;
@@ -364,6 +365,90 @@ namespace server.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<TodoPayload>> DeleteTodo([FromRoute] int id) =>
             Ok(await _repository.RemoveTodoAsync(id));
+    }
+}
+```
+### Seed database
+in `appsettings.Development.json`
+```json
+"SeedDatabase": {
+    "Enable": true
+},
+```
+in `Program.cs`
+```cs
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using server.Data;
+
+namespace server
+{
+    public class Program
+    {
+        public static async Task Main(string[] args)
+        {
+            var host = CreateHostBuilder(args).Build();
+            using var scope = host.Services.CreateScope();
+            var services = scope.ServiceProvider;
+            try
+            {
+                var context = services.GetRequiredService<DataContext>();
+                var config = services.GetRequiredService<IConfiguration>();
+
+                await context.Database.MigrateAsync();
+                await Seed.InitSeed(config, context);
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetRequiredService<Logger<Program>>();
+                logger.LogError($"error: {ex}");
+            }
+
+            await host.RunAsync();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
+}
+```
+in `Data/Seed.cs`
+```cs
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using server.Models;
+
+namespace server.Data
+{
+    public class Seed
+    {
+        public static async Task InitSeed(IConfiguration config, DataContext context)
+        {
+            if (!bool.Parse(config["SeedDatabase:Enable"]))
+                return;
+
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+            context.Todos.AddRange(GetTodos());
+            await context.SaveChangesAsync();
+        }
+        private static List<Todo> GetTodos() =>
+            new List<Todo> 
+            { 
+                new Todo { Title = "one", Description = "first", IsDone = false },
+                new Todo { Title = "two", Description = "second", IsDone = true }
+            };
     }
 }
 ```
