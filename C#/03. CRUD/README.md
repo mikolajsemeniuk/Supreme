@@ -47,15 +47,15 @@ using System;
 
 namespace server.Models
 {
-    public class Todo
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
-        public bool IsDone { get; set; }
-    }
+	public class Todo
+    	{
+		public int Id { get; set; }
+		public string Title { get; set; }
+		public string Description { get; set; }
+		public DateTime Created { get; set; }
+		public DateTime Updated { get; set; }
+		public bool IsDone { get; set; }
+    	}
 }
 ```
 ### Modify DbContext
@@ -66,13 +66,13 @@ using server.Models;
 
 namespace server.Data
 {
-	  public class DataContext: DbContext
-	  {
-		    public DataContext(DbContextOptions options) : base(options)
-		    {
-		    }
-        public DbSet<Todo> Todos { get; set; }
-	  }
+	public class DataContext: DbContext
+	{
+		public DataContext(DbContextOptions options) : base(options)
+		{
+		}
+        	public DbSet<Todo> Todos { get; set; }
+	}
 }
 ```
 ### Create migration and update db
@@ -89,15 +89,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace server.DTO
 {
-    public class TodoInput
-    {
-        [Required]
-        public string Title { get; set; }
-        [Required]
-        public string Description { get; set; }
-        [Required]
-        public Boolean IsDone { get; set; }
-    }
+	public class TodoInput
+	{
+		[Required]
+		public string Title { get; set; }
+		[Required]
+		public string Description { get; set; }
+		[Required]
+		public Boolean IsDone { get; set; }
+	}
 }
 ```
 in `DTO/TodoPayload.cs`
@@ -106,15 +106,15 @@ using System;
 
 namespace server.DTO
 {
-    public class TodoPayload
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime Updated { get; set; }
-        public bool IsDone { get; set; }
-    }
+	public class TodoPayload
+	{
+		public int Id { get; set; }
+		public string Title { get; set; }
+		public string Description { get; set; }
+		public DateTime Created { get; set; }
+		public DateTime Updated { get; set; }
+		public bool IsDone { get; set; }
+	}
 }
 ```
 ### Create Interface
