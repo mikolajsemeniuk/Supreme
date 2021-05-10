@@ -37,7 +37,6 @@ namespace server.Data
 	{
 		public DataContext(DbContextOptions options) : base(options)
 		{
-
 		}
 	}
 }
