@@ -380,7 +380,6 @@ in `Program.cs`
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -401,15 +400,13 @@ namespace server
                 var context = services.GetRequiredService<DataContext>();
                 var config = services.GetRequiredService<IConfiguration>();
 
-                await context.Database.MigrateAsync();
                 await Seed.InitSeed(config, context);
             }
             catch (Exception ex)
             {
-                var logger = services.GetRequiredService<Logger<Program>>();
+                var logger = host.Services.GetService<ILogger<Program>>();
                 logger.LogError($"error: {ex}");
             }
-
             await host.RunAsync();
         }
 
@@ -426,6 +423,7 @@ in `Data/Seed.cs`
 ```cs
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using server.Models;
 
@@ -437,10 +435,10 @@ namespace server.Data
         {
             if (!bool.Parse(config["SeedDatabase:Enable"]))
                 return;
-
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-            context.Todos.AddRange(GetTodos());
+            await context.Database.EnsureDeletedAsync();
+            await context.Database.MigrateAsync();
+            await context.Database.EnsureCreatedAsync();
+            await context.Todos.AddRangeAsync(GetTodos());
             await context.SaveChangesAsync();
         }
         private static List<Todo> GetTodos() =>
