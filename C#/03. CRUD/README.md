@@ -1,5 +1,6 @@
 # CRUD - HTTP
 * Allow CORS
+* Create Custom Exception Page
 * Create Model
 * Modify DbContext
 * Create migration and update db
@@ -38,6 +39,106 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         endpoints.MapControllers();
     });
+}
+```
+### Create Custom Exception Page
+in `Exceptions/ApiException.cs`
+```cs
+namespace server.Exceptions
+{
+    public class ApiException
+    {
+        public ApiException(string message, string details = null)
+        {
+            Message = message;
+            Details = details;
+
+        }
+        public string Message { get; set; }
+        public string Details { get; set; }
+    }
+}
+```
+in `Middlewares/ExceptionMiddleware.cs`
+```cs
+using System;
+using System.Net;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using server.Exceptions;
+
+namespace server.Middlewares
+{
+    public class ExceptionMiddleware
+    {
+        public readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionMiddleware> _logger;
+        public readonly IHostEnvironment _env;
+
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger, IHostEnvironment env)
+        {
+            _env = env;
+            _logger = logger;
+            _next = next;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+            try
+            {
+                await _next(context);
+            }
+            catch (Exception exception)
+            {
+                string message;
+                int statusCode;
+                if (exception.Message.Contains("[Code]"))
+                {
+                    var text = exception.Message.Split("[Code] ");
+                    message = text[0];
+                    statusCode = int.Parse(text[1]);
+                }
+                else
+                {
+                    message = exception.Message;
+                    statusCode = (int) HttpStatusCode.BadRequest;
+                }
+
+                _logger.LogError(exception, exception.Message);
+                context.Response.ContentType = "application/json";
+                context.Response.StatusCode = statusCode;
+
+                var response = _env.IsDevelopment()
+                    ? new ApiException(message, exception.StackTrace?.ToString())
+                    : new ApiException(message);
+
+                var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+
+                var json = JsonSerializer.Serialize(response, options);
+
+                await context.Response.WriteAsync(json);
+            }
+        }
+    }
+}
+```
+in `Startup.cs`
+```cs
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+         //app.UseDeveloperExceptionPage();
+         app.UseSwagger();
+         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "test v1"));
+    }
+    app.UseMiddleware<ExceptionMiddleware>();
+    
+    app.UseHttpsRedirection();
+    // ...
 }
 ```
 ### Create Model
