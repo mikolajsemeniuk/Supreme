@@ -285,7 +285,7 @@ namespace server.Services
         {
             var todo = await _context.Todos.FindAsync(id);
             if (todo == null)
-                throw new Exception("Could not find an item with id: " + id);
+                throw new Exception("Could not find an item with id: " + id + "[Code] 404");
             todo.Title = input.Title;
             todo.Description = input.Description;
             todo.IsDone = input.IsDone;
@@ -300,7 +300,7 @@ namespace server.Services
         {
             var todo = await _context.Todos.FindAsync(id);
             if (todo == null)
-                throw new Exception("Could not find an item with id: " + id);
+                throw new Exception("Could not find an item with id: " + id + "[Code] 404");
             _context.Todos.Remove(todo);
             await CheckIfAllSavedAsync();
             return new TodoPayload
