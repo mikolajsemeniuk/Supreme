@@ -90,11 +90,13 @@ namespace server.DTO
 {
 	public class TodoInput
 	{
-		[Required]
+		[Required(ErrorMessage = "Title is required.")]
+		[StringLength(25, MinimumLength = 4, ErrorMessage = "Title must have min length of 4 and max Length of 25")]
 		public string Title { get; set; }
-		[Required]
+		[Required(ErrorMessage = "Description is required.")]
+		[StringLength(255, MinimumLength = 8, ErrorMessage = "Description must have min length of 8 and max Length of 255")]
 		public string Description { get; set; }
-		[Required]
+		[Required(ErrorMessage = "IsDone is required.")]
 		public bool IsDone { get; set; }
 	}
 }
