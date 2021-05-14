@@ -9,7 +9,7 @@
 * Create repository
 * Register service
 * Create controller
-* [Seed database](### Seed database)
+* [Seed database](###Seed database)
 ### Allow CORS
 in `Startup.cs`
 ```cs
