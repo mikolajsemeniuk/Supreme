@@ -1,14 +1,14 @@
 # CRUD - HTTP
-* Allow CORS
-* Create custom exception page
-* Create model
-* Modify DbContext
-* Create migration and update db
-* Create input and payload
-* Create interface
-* Create repository
-* Register service
-* Create controller
+* [Allow CORS](#allow-cors)
+* [Create custom exception page](#create-custom-exception-page)
+* [Create model](#create-model)
+* [Modify DbContext](#modify-dbcontext)
+* [Create migration and update db](#create-migration-and-update-db)
+* [Create input and payload](#create-input-and-payload)
+* [Create interface](#create-interface)
+* [Create repository](#create-repository)
+* [Register service](#register-service)
+* [Create controller](#create-controller)
 * [Seed database](#seed-database)
 ### Allow CORS
 [go top](#crud---http)
