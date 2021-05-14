@@ -10,6 +10,7 @@
 * [Register service](#register-service)
 * [Create controller](#create-controller)
 * [Seed database](#seed-database)
+* [Tests](#tests)
 ### Allow CORS
 in `Startup.cs`
 ```cs
@@ -143,9 +144,8 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     // ...
 }
 ```
-### Create model
 [go top](#crud---http)
-
+### Create model
 in `Models/Todo.cs`
 ```cs
 using System;
@@ -163,8 +163,8 @@ namespace server.Models
     	}
 }
 ```
-### Modify DbContext
 [go top](#crud---http)
+### Modify DbContext
 
 in `Data/DataContext.cs`
 ```cs
@@ -182,17 +182,16 @@ namespace server.Data
 	}
 }
 ```
-### Create migration and update db
 [go top](#crud---http)
-
+### Create migration and update db
+in `terminal`
 ```sh
 dotnet ef database drop &&
 dotnet ef migrations add Todos &&
 dotnet ef database update 
 ```
-### Create input and payload
 [go top](#crud---http)
-
+### Create input and payload
 in `DTO/TodoInput.cs`
 ```cs
 using System.ComponentModel.DataAnnotations;
@@ -229,9 +228,8 @@ namespace server.DTO
 	}
 }
 ```
-### Create interface
 [go top](#crud---http)
-
+### Create interface
 in `Interfaces/ITodoRepository.cs`
 ```cs
 using System.Collections.Generic;
@@ -251,9 +249,8 @@ namespace server.Interfaces
     }
 }
 ```
-### Create repository
 [go top](#crud---http)
-
+### Create repository
 in `Services/TodoRepository.cs`
 ```cs
 using System;
@@ -329,9 +326,8 @@ namespace server.Services
     }
 }
 ```
-### Register service
 [go top](#crud---http)
-
+### Register service
 in `Startup.cs`
 ```cs
 public void ConfigureServices(IServiceCollection services)
@@ -341,9 +337,8 @@ public void ConfigureServices(IServiceCollection services)
     // ...
 }
 ```
-### Create controller
 [go top](#crud---http)
-
+### Create controller
 in `Controllers/TodoController.cs`
 ```cs
 using System.Collections.Generic;
@@ -385,9 +380,8 @@ namespace server.Controllers
     }
 }
 ```
-### Seed database
 [go top](#crud---http)
-
+### Seed database
 in `appsettings.Development.json`
 ```json
 "SeedDatabase": {
@@ -469,6 +463,7 @@ namespace server.Data
     }
 }
 ```
+[go top](#crud---http)
 ## Tests
 * https://localhost:5001/todo
 * https://localhost:5001/todo/{id}
@@ -479,3 +474,4 @@ namespace server.Data
 	"IsDone": true
 }
 ```
+[go top](#crud---http)
