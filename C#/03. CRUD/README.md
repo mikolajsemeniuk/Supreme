@@ -44,9 +44,8 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     });
 }
 ```
-### Create custom exception page
 [go top](#crud---http)
-
+### Create custom exception page
 in `Exceptions/ApiException.cs`
 ```cs
 namespace server.Exceptions
