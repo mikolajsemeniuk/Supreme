@@ -100,6 +100,7 @@ namespace mongooo.Services
 
         public async Task<Todo> SetTodoAsync(Guid id)
         {
+            // FilterDefinition<Todo> filter = filterBuilder.Eq(todo => todo.Id, id);
             var todo = await dbCollection.Find(filterBuilder.Eq(todo => todo.Id, id)).FirstOrDefaultAsync();
             todo.Title = "heh";
             todo.Description = "heheheh";
