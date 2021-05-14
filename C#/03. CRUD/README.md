@@ -11,8 +11,6 @@
 * [Create controller](#create-controller)
 * [Seed database](#seed-database)
 ### Allow CORS
-[go top](#crud---http)
-
 in `Startup.cs`
 ```cs
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
