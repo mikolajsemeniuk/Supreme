@@ -1,5 +1,6 @@
 # MongoDB
 * Run container
+* Add driver
 
 ### Run container
 in `terminal`
@@ -9,4 +10,9 @@ docker run -d --rm \
     -p 27017:27017 \
     -v mongodbdata:/data/db \
     mongo
+```
+### Add driver
+in `terminal`
+```sh
+dotnet add package MongoDB.Driver
 ```
