@@ -11,6 +11,8 @@
 * Create controller
 * [Seed database](#seed-database)
 ### Allow CORS
+[go top](#crud---http)
+
 in `Startup.cs`
 ```cs
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -43,6 +45,8 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 ### Create custom exception page
+[go top](#crud---http)
+
 in `Exceptions/ApiException.cs`
 ```cs
 namespace server.Exceptions
@@ -143,6 +147,8 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 ### Create model
+[go top](#crud---http)
+
 in `Models/Todo.cs`
 ```cs
 using System;
@@ -161,6 +167,8 @@ namespace server.Models
 }
 ```
 ### Modify DbContext
+[go top](#crud---http)
+
 in `Data/DataContext.cs`
 ```cs
 using Microsoft.EntityFrameworkCore;
@@ -178,12 +186,16 @@ namespace server.Data
 }
 ```
 ### Create migration and update db
+[go top](#crud---http)
+
 ```sh
 dotnet ef database drop &&
 dotnet ef migrations add Todos &&
 dotnet ef database update 
 ```
 ### Create input and payload
+[go top](#crud---http)
+
 in `DTO/TodoInput.cs`
 ```cs
 using System.ComponentModel.DataAnnotations;
@@ -221,6 +233,8 @@ namespace server.DTO
 }
 ```
 ### Create interface
+[go top](#crud---http)
+
 in `Interfaces/ITodoRepository.cs`
 ```cs
 using System.Collections.Generic;
@@ -241,6 +255,8 @@ namespace server.Interfaces
 }
 ```
 ### Create repository
+[go top](#crud---http)
+
 in `Services/TodoRepository.cs`
 ```cs
 using System;
@@ -317,6 +333,8 @@ namespace server.Services
 }
 ```
 ### Register service
+[go top](#crud---http)
+
 in `Startup.cs`
 ```cs
 public void ConfigureServices(IServiceCollection services)
@@ -327,6 +345,8 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 ### Create controller
+[go top](#crud---http)
+
 in `Controllers/TodoController.cs`
 ```cs
 using System.Collections.Generic;
@@ -369,7 +389,7 @@ namespace server.Controllers
 }
 ```
 ### Seed database
-[go back](#crud---http)
+[go top](#crud---http)
 
 in `appsettings.Development.json`
 ```json
