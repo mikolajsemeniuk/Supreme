@@ -370,6 +370,7 @@ namespace server.Controllers
 ```
 ### Seed database
 [go back](#crud---http)
+
 in `appsettings.Development.json`
 ```json
 "SeedDatabase": {
