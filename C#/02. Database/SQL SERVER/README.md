@@ -1,12 +1,12 @@
 # SQL SERVER
-1. Create container
+1. Set up database
 1. Install packages
 1. Install `dotnet-ef` **(if you do not have it)**
 1. Create class derives from `DbContext`
 1. Configure service
 1. Add ConnectionString
 1. Update database
-### Create container
+### Set up database
 in `terminal`
 ```sh
 # servername: "localhost" / "127.0.0.1"
