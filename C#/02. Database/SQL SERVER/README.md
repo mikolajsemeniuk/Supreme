@@ -11,10 +11,33 @@ in `terminal`
 ```sh
 # servername: "localhost" / "127.0.0.1"
 # login: "sa"
-# Password is "Passw0rd!" 
-sudo docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Passw0rd\!" \
-   -p 1433:1433 --name sql1 -h sql1 \
+# Password is "P@ssw0rd" 
+sudo docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=P@ssw0rd" \
+   -p 1433:1433 --name db \
    -d mcr.microsoft.com/mssql/server:2019-latest
+```
+or `docker-compose`
+```yml
+version: '3.4'
+
+services:
+    db:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        container_name: db
+        ports:
+          - 1433:1433
+        environment:
+          - ACCEPT_EULA=Y
+          - SA_PASSWORD=P@ssw0rd
+        # optional
+        # volumes:
+        #  - sqlvolume1:/var/opt/mssql
+# docker-compose up -d
+```
+or `terminal`
+```sh
+echo "version: '3.4'\n\nservices:\n    db:\n        image: mcr.microsoft.com/mssql/server:2019-latest\n        container_name: db\n        ports:\n         - 1433:1433\n        environment:\n         - ACCEPT_EULA=Y\n         - SA_PASSWORD=P@ssw0rd" > docker-compose.yml
+docker-compose up
 ```
 ### Install packages
 ```sh
@@ -41,6 +64,10 @@ namespace server.Data
 	}
 }
 ```
+or `terminal`
+```sh
+
+```
 ### Configure service
 in `Startup.cs`
 ```cs
@@ -58,7 +85,7 @@ public void ConfigureServices(IServiceCollection services)
 in `server/Properties`
 ```cs
 "ConnectionStrings": {
-    "DefaultConnection": "Server=127.0.0.1;Database=app;User Id=sa;Password=Passw0rd!"
+    "DefaultConnection": "Server=127.0.0.1,1433;Database=app;User Id=sa;Password=P@ssw0rd"
 },
 ```
 ### Update database
