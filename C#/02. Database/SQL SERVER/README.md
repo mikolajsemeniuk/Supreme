@@ -37,7 +37,7 @@ services:
 or `terminal`
 ```sh
 echo "version: '3.4'\n\nservices:\n    db:\n        image: mcr.microsoft.com/mssql/server:2019-latest\n        container_name: db\n        ports:\n         - 1433:1433\n        environment:\n         - ACCEPT_EULA=Y\n         - SA_PASSWORD=P@ssw0rd" > docker-compose.yml
-docker-compose up
+docker-compose up -d
 ```
 ### Install packages
 ```sh
