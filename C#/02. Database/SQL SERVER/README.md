@@ -66,7 +66,9 @@ namespace server.Data
 ```
 or `terminal`
 ```sh
-
+mkdir Data &&
+appname='app' &&
+echo "using Microsoft.EntityFrameworkCore;\n\nnamespace $appname.Data\n{\n\tpublic class DataContext : DbContext\n\t{\n\t\tpublic DataContext(DbContextOptions options) : base(options)\n\t\t{\n\t\t}\n\t}\n}" >> Data/DataContext.cs
 ```
 ### Configure service
 in `Startup.cs`
