@@ -124,6 +124,10 @@ namespace server.Middlewares
 
                 await context.Response.WriteAsync(json);
             }
+	    // catch (CustomException exception)
+            // {
+            // 	 Console.WriteLine($"message: {exception.Message}, code: {exception.Code}");
+            // }
         }
     }
 }
