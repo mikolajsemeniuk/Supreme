@@ -7,6 +7,8 @@
 ### Run container
 in `terminal`
 ```sh
+# to locate in mongo terminal
+# db.adminCommand("getCmdLineOpts").parsed.storage.dbPath
 docker run -d --rm \
     --name mongo \
     -p 27017:27017 \
