@@ -40,3 +40,8 @@ and You're ready to go 🚀!
 ## External Resources
 * [Visual Studio Code (Adding to PATH)](https://code.visualstudio.com/docs/setup/mac)
 * [Sublime Text (Adding to PATH)](https://stackoverflow.com/questions/25233133/launch-sublime-text-3-in-terminal-with-zsh)
+
+## Note
+```sh
+sudo powermetrics --samplers smc |grep -i "temperature" 
+```
